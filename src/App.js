@@ -26,8 +26,14 @@ class App extends Component {
     this.setState({ posts });
   };
 
-  handleUpdate = (post) => {
+  handleUpdate = async (post) => {
     console.log("Update", post);
+    post.title = "This post is updated now";
+    await axios.put(apiEndpoint + "/" + post.id, post);
+    const posts = [...this.state.posts]; //cloning the posts array
+    const index = posts.indexOf(post); // we need to find the index of the post in this array
+    posts[index] = { ...post }; // now we go to the index, create a new object and spread
+    this.setState({ posts });
   };
 
   handleDelete = (post) => {
