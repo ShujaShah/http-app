@@ -22,7 +22,7 @@ class App extends Component {
       body: "Software Engineer....",
     };
     const { data: post } = await axios.post(apiEndpoint, obj);
-    const posts = [post, ...this.state.posts];
+    const posts = [post, ...this.state.posts]; //adding the newly added post at the beginning of the list.
     this.setState({ posts });
   };
 
